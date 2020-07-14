@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev ./server.ts",
     "debug": "NODE_ENV=development ts-node-dev --inspect --respawn ./server.ts",
-    "mon": "nodemon --watch house.proto --exec ./gen.sh"
+    "mon": "nodemon --watch *.proto --exec ./gen.sh"
   },
   "author": "Patrick Desjardins <mrdesjardins@gmail.com>",
   "license": "ISC",

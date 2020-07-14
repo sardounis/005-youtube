@@ -1,25 +1,44 @@
-import { House } from "./house_pb";
+import { House, HouseAddress } from "./generated/house_pb";
 import {
   BoolValue,
   Int32Value,
   StringValue,
 } from "google-protobuf/google/protobuf/wrappers_pb";
+import { Person } from "./generated/person_pb";
 
 export class Mapper {
   public house(house: House.AsObject): House {
     const houseGrpc: House = new House();
     houseGrpc.setId(castToNumberValue(house.id));
-    houseGrpc.setStreetname(castToStringValue(house.streetname));
-    houseGrpc.setHousenumber(castToStringValue(house.housenumber));
+    houseGrpc.setAddress(this.address(house.address));
     houseGrpc.setNumberofbedrooms(castToNumberValue(house.numberofbedrooms));
     houseGrpc.setSquarefeet(castToNumberValue(house.squarefeet));
     houseGrpc.setOnsale(castToBoolValue(house.onsale));
     houseGrpc.setIsrental(castToBoolValue(house.isrental));
+    houseGrpc.setOwnerid(castToNumberValue(house.ownerid));
     return houseGrpc;
   }
 
   public houses(houses: House.AsObject[]): House[] {
     return houses.map((h) => this.house(h));
+  }
+
+  public address(address: HouseAddress.AsObject | undefined): HouseAddress {
+    const houseAddressGrpc: HouseAddress = new HouseAddress();
+    houseAddressGrpc.setHousenumber(castToStringValue(address?.housenumber));
+    houseAddressGrpc.setStreetname(castToStringValue(address?.streetname));
+    return houseAddressGrpc;
+  }
+
+  public person(person: Person.AsObject | undefined): Person {
+    const personGrpc: Person = new Person();
+    personGrpc.setId(castToNumberValue(person?.id));
+    personGrpc.setFirstname(castToStringValue(person?.firstname));
+    personGrpc.setLastname(castToStringValue(person?.lastname));
+    return personGrpc;
+  }
+  public people(people: Person.AsObject[]): Person[] {
+    return people.map((h) => this.person(h));
   }
 }
 
@@ -53,4 +72,4 @@ function castToStringValue(
   }
   return undefined;
 }
-export const mapping = new Mapper();
+export const mapper = new Mapper();
