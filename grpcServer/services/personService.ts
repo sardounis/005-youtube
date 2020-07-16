@@ -1,24 +1,14 @@
-import {
-  HouseRequest,
-  HouseResponse,
-  House,
-  HousesRequest,
-  HousesResponse,
-} from "../generated/house_pb";
 import { mapper } from "../mapper";
 import grpc from "grpc";
-import { allHouse, allPeople } from "../database/fake";
-import {
-  IPersonServiceService,
-  IPersonServiceServer,
-} from "../generated/person_grpc_pb";
+import { allPeople } from "../../database/fake";
+import { IPersonServiceServer } from "../../generated/person_grpc_pb";
 import {
   PersonRequest,
   PersonResponse,
   PersonsRequest,
   PersonsResponse,
   Person,
-} from "../generated/person_pb";
+} from "../../generated/person_pb";
 export class PersonService implements IPersonServiceServer {
   public getPerson(
     call: grpc.ServerUnaryCall<PersonRequest>,

@@ -4,14 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev ./server.ts",
-    "debug": "NODE_ENV=development ts-node-dev --inspect --respawn ./server.ts",
-    "mon": "nodemon --watch *.proto --exec ./gen.sh"
+    "grpc:start": "ts-node-dev ./grpcServer/server.ts",
+    "grpc:debug": "NODE_ENV=development ts-node-dev --inspect --respawn ./grpcServer/server.ts",
+    "grpc:mon": "nodemon --watch *.proto --exec ./gen.sh",
+    "graphql:start": "ts-node-dev ./graphql/graphQLServer.ts"
   },
   "author": "Patrick Desjardins <mrdesjardins@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.7",
+    "@types/graphql": "^14.5.0",
+    "apollo-server": "^2.15.1",
+    "apollo-server-core": "^2.15.1",
+    "apollo-server-express": "^2.15.1",
+    "express": "^4.17.1",
     "google-protobuf": "^3.12.2",
+    "graphql": "^15.3.0",
     "grpc": "^1.24.3",
     "grpc-tools": "^1.9.0",
     "grpc_tools_node_protoc_ts": "^4.1.0",

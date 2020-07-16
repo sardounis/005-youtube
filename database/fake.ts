@@ -29,7 +29,7 @@ export const allHouse: House.AsObject[] = [
     ownerid: { value: 1 },
   },
   {
-    id: { value: 1 },
+    id: { value: 2 },
     address: {
       streetname: { value: "Another Street" },
       housenumber: { value: "500" },
