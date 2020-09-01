@@ -30,11 +30,10 @@ const schemasPath = loadFilesSync(
 
 const schemas = mergeTypeDefs(schemasPath);
 const services: any = {};
+
 const config: ApolloServerExpressConfig = {
-  schema: makeExecutableSchema({
-    typeDefs: schemas,
-    resolvers: mergedResolvers,
-  }),
+  typeDefs: schemas,
+  resolvers: mergedResolvers,
   dataSources: () => {
     return services as any;
   },
